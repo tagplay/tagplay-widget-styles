@@ -1,0 +1,11 @@
+{
+  "name": "@tagplay/tagplay-widget-styles",
+  "version": "1.0.0",
+  "description": "Styles for Tagplay widgets.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hlin@tagplay.co",
+  "license": "ISC"
+}
