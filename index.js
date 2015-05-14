@@ -41,7 +41,8 @@ var styles = {
       Property("background", "#FFF"),
       Property("border-radius", "4px"),
       Property("padding", "5px"),
-      Property("position", "relative")
+      Property("position", "relative"),
+      Property("min-height", "50px")
     ]),
     Declaration(".tagplay-media-username", [
       Property("font-size", "12px"),
@@ -97,6 +98,9 @@ var styles = {
       Property("margin-top", "5px"),
       Property("padding", "0 5px")
     ]),
+    Declaration(".tagplay-media-username + .tagplay-media-date", [
+      Property("margin-top", "35px")
+    ]),
     Declaration(".tagplay-media-object", [
       Property("border-radius", "3px")
     ]),
@@ -126,11 +130,12 @@ var styles = {
   ])
 };
 
-function generateCSS(widgetName, config) {
+function generateCSS(widgetName, config, responsive) {
   var selectorPrefix = ".tagplay-widget-" + widgetName + " ";
   var style = config.style;
   var lesserSpacing = Math.floor(config.spacing / 2);
   var greaterSpacing = Math.ceil(config.spacing / 2);
+  if (responsive === undefined) responsive = true;
 
   var css = baseCSS;
   if (style !== 'minimal') {
@@ -150,7 +155,7 @@ function generateCSS(widgetName, config) {
   css.add(Declaration(selectorPrefix, widgetProperties));
   css.add(Declaration(selectorPrefix + ".tagplay-media-container", [
     Property("width", 100 / config.cols + "%")
-  ], "min-width:768px"));
+  ], responsive ? "min-width:768px" : undefined));
   css.add(Declaration(selectorPrefix + ".tagplay-media-inner", [
     Property("margin", [lesserSpacing + "px", greaterSpacing + "px", greaterSpacing + "px", lesserSpacing + "px"])
   ]));
