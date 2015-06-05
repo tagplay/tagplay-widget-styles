@@ -180,7 +180,8 @@ function generateCSS(widgetName, config, responsive) {
 
   var css = baseCSS;
   if (style !== 'minimal') {
-    css = css.concat(styles[style].prefix(selectorPrefix));
+    var ss = styles[style];
+    if (ss) css = css.concat(ss.prefix(selectorPrefix));
   }
 
   var widgetProperties = [];
