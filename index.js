@@ -172,9 +172,10 @@ var styles = {
 
 function generateCSS(widgetName, config, responsive) {
   var selectorPrefix = ".tagplay-widget-" + widgetName + " ";
-  var style = config.style;
-  var lesserSpacing = Math.floor(config.spacing / 2);
-  var greaterSpacing = Math.ceil(config.spacing / 2);
+  var style = config.style || 'minimal';
+  var spacing = config.spacing || 20;
+  var lesserSpacing = Math.floor(spacing / 2);
+  var greaterSpacing = Math.ceil(spacing / 2);
   if (responsive === undefined) responsive = true;
 
   var css = baseCSS;
