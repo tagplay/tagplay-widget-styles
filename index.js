@@ -176,6 +176,7 @@ function generateCSS(selectorPrefix, config, responsive) {
   var spacing = config.spacing !== undefined ? config.spacing : 10;
   var lesserSpacing = Math.floor(spacing / 2);
   var greaterSpacing = Math.ceil(spacing / 2);
+
   if (responsive === undefined) responsive = true;
 
   var css = baseCSS;
@@ -203,7 +204,7 @@ function generateCSS(selectorPrefix, config, responsive) {
   }
   css.add(Declaration(selectorPrefix + ".tagplay-media-container", [
     Property("width", 100 / config.cols + "%")
-  ], responsive ? "min-width:" + "px" : undefined));
+  ], responsive ? "min-width:768px" : undefined));
 
   css.add(Declaration(selectorPrefix + ".tagplay-media-inner", [
     Property("margin", [lesserSpacing + "px", greaterSpacing + "px", greaterSpacing + "px", lesserSpacing + "px"])
