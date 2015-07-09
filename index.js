@@ -68,7 +68,7 @@ var styles = {
       Property("position", "relative"),
       Property("min-height", "50px")
     ]),
-    Declaration(".tagplay-media-username", [
+    Declaration("p.tagplay-media-username", [
       Property("font-size", "12px"),
       Property("text-align", "right"),
       Property("color", "#FFF"),
@@ -83,7 +83,7 @@ var styles = {
       Property("border", "1px solid transparent"),
       Property("border-radius", "2px 2px 0 2px"),
     ]),
-    Declaration(".tagplay-media-username:after", [
+    Declaration("p.tagplay-media-username:after", [
       Property("display", "block"),
       Property("height", "0px"),
       Property("position", "absolute"),
@@ -93,15 +93,16 @@ var styles = {
       Property("border-bottom", "10px solid transparent"),
       Property("border-left", "10px solid #0B131B")
     ]),
-    Declaration(".tagplay-media-text", [
+    Declaration("p.tagplay-media-text", [
       Property("font-size", "22px"),
+      Property("line-height", "31px"),
       Property("font-weight", "bold"),
       Property("padding", "40px 15px 25px"),
       Property("overflow", "auto"),
       Property("text-align", "left")
     ]),
     Declaration(".tagplay-media + .tagplay-media-text", [
-      Property("margin-top", "5px"),
+      Property("margin", "5px 0 0 0"),
       Property("padding", "10px"),
       Property("background-color", "#F6F6F6"),
       Property("border-radius", "4px"),
@@ -170,8 +171,7 @@ var styles = {
   ])
 };
 
-function generateCSS(widgetName, config, responsive) {
-  var selectorPrefix = ".tagplay-widget-" + widgetName + " ";
+function generateCSS(selectorPrefix, config, responsive) {
   var style = config.style;
   var lesserSpacing = Math.floor(config.spacing / 2);
   var greaterSpacing = Math.ceil(config.spacing / 2);
@@ -190,12 +190,19 @@ function generateCSS(widgetName, config, responsive) {
   if (config.background_color) {
     widgetProperties.push(Property("background-color", config.background_color));
   }
-  widgetProperties.push(Property("margin", [-lesserSpacing + "px", -greaterSpacing + "px", -greaterSpacing + "px", -lesserSpacing + "px"]));
+  widgetProperties.push(Property("margin", [(10 - lesserSpacing) + "px", (10 - greaterSpacing) + "px", (10 - greaterSpacing) + "px", (10 - lesserSpacing) + "px"]));
 
   css.add(Declaration(selectorPrefix, widgetProperties));
+
+  if (responsive) {
+    css.add(Declaration(selectorPrefix + ".tagplay-media-container", [
+      Property("width", "100%")
+    ]));
+  }
   css.add(Declaration(selectorPrefix + ".tagplay-media-container", [
     Property("width", 100 / config.cols + "%")
   ], responsive ? "min-width:768px" : undefined));
+
   css.add(Declaration(selectorPrefix + ".tagplay-media-inner", [
     Property("margin", [lesserSpacing + "px", greaterSpacing + "px", greaterSpacing + "px", lesserSpacing + "px"])
   ]));
