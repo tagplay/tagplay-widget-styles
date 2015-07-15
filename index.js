@@ -6,8 +6,14 @@ module.exports = {
 };
 
 var baseCSS = Stylesheet([
+  Declaration(".tagplay-widget", [
+    Property("overflow", "auto")
+  ]),
   Declaration(".tagplay-widget a img", [
     Property("border", "none")
+  ]),
+  Declaration(".tagplay-waterfall-column", [
+    Property("float", "left")
   ]),
   Declaration(".tagplay-media-container", [
     Property("display", "inline-block"),
@@ -98,7 +104,8 @@ var styles = {
       Property("line-height", "31px"),
       Property("font-weight", "bold"),
       Property("padding", "40px 15px 25px"),
-      Property("overflow", "auto"),
+      Property("overflow", "hidden"),
+      Property("text-overflow", "ellipsis"),
       Property("text-align", "left")
     ]),
     Declaration(".tagplay-media + .tagplay-media-text", [
@@ -107,12 +114,14 @@ var styles = {
       Property("background-color", "#F6F6F6"),
       Property("border-radius", "4px"),
       Property("position", "relative"),
+      Property("overflow-y", "auto"),
       Property("max-height", "60px"),
-      Property("overflow", "hidden"),
-      Property("text-overflow", "ellipsis"),
       Property("font-size", "16px"),
       Property("line-height", "23px"),
       Property("font-weight", "normal")
+    ]),
+    Declaration(".tagplay-waterfall-column .tagplay-media + .tagplay-media-text", [
+      Property("max-height", "none")
     ]),
     Declaration(".tagplay-media-date", [
       Property("text-align", "right"),
@@ -193,16 +202,16 @@ function generateCSS(selectorPrefix, config, responsive) {
   if (config.background_color) {
     widgetProperties.push(Property("background-color", config.background_color));
   }
-  widgetProperties.push(Property("margin", [(10 - lesserSpacing) + "px", (10 - greaterSpacing) + "px", (10 - greaterSpacing) + "px", (10 - lesserSpacing) + "px"]));
+  widgetProperties.push(Property("padding", Math.max(10 - lesserSpacing, greaterSpacing) + "px", Math.max(10 - greaterSpacing, lesserSpacing) + "px", Math.max(10 - greaterSpacing, lesserSpacing) + "px", Math.max(10 - lesserSpacing, greaterSpacing) + "px"));
 
   css.add(Declaration(selectorPrefix, widgetProperties));
 
-  if (responsive) {
+  if (responsive || config.type === 'waterfall') {
     css.add(Declaration(selectorPrefix + ".tagplay-media-container", [
       Property("width", "100%")
     ]));
   }
-  css.add(Declaration(selectorPrefix + ".tagplay-media-container", [
+  css.add(Declaration(selectorPrefix + (config.type === 'waterfall' ? ".tagplay-waterfall-column" : ".tagplay-media-container"), [
     Property("width", 100 / config.cols + "%")
   ], responsive ? "min-width:768px" : undefined));
 
