@@ -23,6 +23,11 @@ var baseCSS = Stylesheet([
     Property("width", "100%"),
     Property("display", "block")
   ]),
+  Declaration(".tagplay-link-info-image", [
+    Property("max-width", "100%"),
+    Property("display", "block"),
+    Property("margin", "auto")
+  ]),
   Declaration(".tagplay-media-text, .tagplay-media-username, .tagplay-media-date", [
     Property("margin", 0)
   ]),
@@ -122,6 +127,34 @@ var styles = {
     ]),
     Declaration(".tagplay-waterfall-column .tagplay-media + .tagplay-media-text", [
       Property("max-height", "none")
+    ]),
+    Declaration(".tagplay-link-info", [
+      Property("border", "1px solid #BDC3C7"),
+      Property("border-radius", "2px"),
+      Property("padding", "10px"),
+      Property("margin", "5px 0 0 0")
+    ]),
+    Declaration(".tagplay-link-info-image", [
+      Property("margin-bottom", "5px")
+    ]),
+    Declaration(".tagplay-link-info-title", [
+      Property("font-size", "16px"),
+      Property("line-height", "23px"),
+      Property("margin", "0")
+    ]),
+    Declaration(".tagplay-link-info-description", [
+      Property("font-size", "14px"),
+      Property("line-height", "20px"),
+      Property("margin", "0")
+    ]),
+    Declaration(".tagplay-link-info-link", [
+      Property("color", "inherit"),
+      Property("text-decoration", "none"),
+      Property("font-weight", "inherit"),
+      Property("font-style", "inherit"),
+      Property("font-size", "inherit"),
+      Property("background", "none"),
+      Property("border", "none")
     ]),
     Declaration(".tagplay-media-date", [
       Property("text-align", "right"),
