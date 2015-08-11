@@ -20,6 +20,7 @@ var baseCSS = Stylesheet([
     Property("vertical-align", "top"),
   ]),
   Declaration(".tagplay-media-object, .tagplay-media-object img", [
+    Property("max-width", "none"),
     Property("width", "100%"),
     Property("display", "block")
   ]),
