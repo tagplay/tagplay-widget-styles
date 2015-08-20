@@ -95,6 +95,10 @@ var styles = {
       Property("border", "1px solid transparent"),
       Property("border-radius", "2px 2px 0 2px"),
     ]),
+    Declaration(".tagplay-media-username a", [
+      Property("color", "#FFF"),
+      Property("text-decoration", "none")
+    ]),
     Declaration("p.tagplay-media-username:after", [
       Property("display", "block"),
       Property("height", "0px"),
@@ -125,6 +129,13 @@ var styles = {
       Property("font-size", "16px"),
       Property("line-height", "23px"),
       Property("font-weight", "normal")
+    ]),
+    Declaration(".tagplay-media-text a", [
+      Property("color", "#12C4A1"),
+      Property("text-decoration", "none")
+    ]),
+    Declaration(".tagplay-media-text a:hover, .tagplay-media-text a:active, .tagplay-media-text a:focus", [
+      Property("text-decoration", "underline")
     ]),
     Declaration(".tagplay-waterfall-column .tagplay-media + .tagplay-media-text", [
       Property("max-height", "none")
