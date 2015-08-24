@@ -12,6 +12,12 @@ var baseCSS = Stylesheet([
   Declaration(".tagplay-widget a img", [
     Property("border", "none")
   ]),
+  Declaration(".tagplay-widget img.emoji", [
+    Property("height", "1em"),
+    Property("width", "1em"),
+    Property("margin", "0 .05em 0 .1em"),
+    Property("vertical-align", "-0.1em")
+  ]),
   Declaration(".tagplay-waterfall-column", [
     Property("float", "left")
   ]),
