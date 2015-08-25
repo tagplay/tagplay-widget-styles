@@ -18,6 +18,75 @@ var baseCSS = Stylesheet([
     Property("margin", "0 .05em 0 .1em"),
     Property("vertical-align", "-0.1em")
   ]),
+  Declaration(".tagplay-lightbox-backdrop", [
+    Property("position", "fixed"),
+    Property("z-index", 2000),
+    Property("top", 0),
+    Property("left", 0),
+    Property("right", 0),
+    Property("bottom", 0),
+    Property("background", "rgba(0, 0, 0, 0.7)"),
+    Property("overflow", "auto")
+  ]),
+  Declaration(".tagplay-lightbox", [
+    Property("position", "relative"),
+    Property("max-width", "500px"),
+    Property("margin", "1% auto 0"),
+    Property("background", "#FFF")
+  ]),
+  Declaration(".tagplay-lightbox .tagplay-media-container", [
+    Property("display", "block")
+  ]),
+  Declaration(".tagplay-lightbox .tagplay-lightbox-prev, .tagplay-lightbox .tagplay-lightbox-next", [
+    Property("font-size", "100px"),
+    Property("line-height", "100px"),
+    Property("width", "200px"),
+    Property("height", "100%"),
+    Property("text-align", "center"),
+    Property("position", "absolute"),
+    Property("top", 0),
+    Property("text-decoration", "none"),
+    Property("color", "#FFF")
+  ]),
+  Declaration(".tagplay-lightbox-prev:after, .tagplay-lightbox-next:after", [
+    Property("position", "absolute"),
+    Property("top", "50%"),
+    Property("left", 0),
+    Property("margin-top", "-75px"),
+    Property("width", "100%")
+  ]),
+  Declaration(".tagplay-lightbox-prev", [
+    Property("right", "100%")
+  ]),
+  Declaration(".tagplay-lightbox-prev:after", [
+    Property("content", "'‹'")
+  ]),
+  Declaration(".tagplay-lightbox-next", [
+    Property("left", "100%")
+  ]),
+  Declaration(".tagplay-lightbox-next:after", [
+    Property("content", "'›'")
+  ]),
+  Declaration(".tagplay-lightbox-prev, .tagplay-lightbox-next", [
+    Property("width", "100px")
+  ], "max-width:767px"),
+  Declaration(".tagplay-lightbox-prev, .tagplay-lightbox-next", [
+    Property("width", "30px")
+  ], "max-width:650px"),
+  Declaration(".tagplay-lightbox-prev, .tagplay-lightbox-next", [
+    Property("text-shadow", "2px 0 5px rgba(0, 0, 0, 0.5)"),
+    Property("width", "100px")
+  ], "max-width:550px"),
+  Declaration(".tagplay-lightbox-prev", [
+    Property("left", "5px"),
+    Property("right", "auto"),
+    Property("text-align", "left")
+  ], "max-width:550px"),
+  Declaration(".tagplay-lightbox-next", [
+    Property("right", "5px"),
+    Property("left", "auto"),
+    Property("text-align", "right")
+  ], "max-width:550px"),
   Declaration(".tagplay-waterfall-column", [
     Property("float", "left")
   ]),
@@ -36,7 +105,9 @@ var baseCSS = Stylesheet([
     Property("margin", "auto")
   ]),
   Declaration(".tagplay-media-text, .tagplay-media-username, .tagplay-media-date", [
-    Property("margin", 0)
+    Property("margin", 0),
+    Property("overflow", "hidden"),
+    Property("text-overflow", "ellipsis")
   ]),
   Declaration(".tagplay-media-options .tagplay-icon", [
     Property("font-style", "normal"),
@@ -77,7 +148,8 @@ var styles = {
   'style-1': Stylesheet([
     Declaration("", [
       Property("font-family", "helvetica, verdana, sans-serif"),
-      Property("color", "#34495E")
+      Property("color", "#34495E"),
+      Property("background", "none")
     ]),
     Declaration(".tagplay-media-inner", [
       Property("background", "#FFF"),
@@ -231,6 +303,14 @@ var styles = {
   ])
 };
 
+var lightboxOnlyStyles = {
+  'style-1': Stylesheet([
+    Declaration(".tagplay-media + .tagplay-media-text", [
+      Property("max-height", "none")
+    ]),
+  ])
+};
+
 function generateCSS(selectorPrefix, config, responsive) {
   var style = config.style || 'minimal';
   var spacing = config.spacing !== undefined ? config.spacing : 10;
@@ -243,6 +323,12 @@ function generateCSS(selectorPrefix, config, responsive) {
   if (style !== 'minimal') {
     var ss = styles[style];
     if (ss) css = css.concat(ss.prefix(selectorPrefix));
+    var lightboxStyles = lightboxOnlyStyles[style];
+    if (lightboxStyles) {
+      css = css.concat(lightboxStyles.prefix(selectorPrefix.split(",").filter(function(prefix) {
+        return prefix.indexOf('.tagplay-lightbox') !== -1;
+      }).join(",")));
+    }
   }
 
   var widgetProperties = [];
@@ -258,17 +344,19 @@ function generateCSS(selectorPrefix, config, responsive) {
   css.add(Declaration(selectorPrefix, widgetProperties));
 
   if (responsive || config.type === 'waterfall') {
-    css.add(Declaration(selectorPrefix + ".tagplay-media-container", [
+    css.add(Declaration(".tagplay-media-container", [
       Property("width", "100%")
-    ]));
+    ]).prefix(selectorPrefix));
   }
-  css.add(Declaration(selectorPrefix + (config.type === 'waterfall' ? ".tagplay-waterfall-column" : ".tagplay-media-container"), [
+  css.add(Declaration(config.type === 'waterfall' ? ".tagplay-waterfall-column" : ".tagplay-media-container", [
     Property("width", 100 / config.cols + "%")
-  ], responsive ? "min-width:768px" : undefined));
+  ], responsive ? "min-width:768px" : undefined).prefix(selectorPrefix.split(",").filter(function(prefix) {
+      return prefix.indexOf('.tagplay-lightbox') === -1;
+    }).join(",")));
 
-  css.add(Declaration(selectorPrefix + ".tagplay-media-inner", [
+  css.add(Declaration(".tagplay-media-inner", [
     Property("margin", [lesserSpacing + "px", greaterSpacing + "px", greaterSpacing + "px", lesserSpacing + "px"])
-  ]));
+  ]).prefix(selectorPrefix));
 
   return css.toString();
 }
@@ -300,9 +388,7 @@ Stylesheet.prototype.toString = function() {
 
 Stylesheet.prototype.prefix = function(prefix) {
   return new Stylesheet(this.declarations.map(function(declaration) {
-    return new Declaration(declaration.selector.split(",").map(function(selector) {
-      return prefix + " " + selector;
-    }).join(","), declaration.properties, declaration.mediaQuery);
+    return declaration.prefix(prefix);
   }));
 };
 
@@ -316,7 +402,15 @@ function Declaration(selector, properties, mediaQuery) {
   this.mediaQuery = mediaQuery;
 
   return this;
-}
+};
+
+Declaration.prototype.prefix = function(prefix) {
+  return new Declaration(this.selector.split(",").map(function(selector) {
+    return prefix.split(",").map(function(pre) {
+      return pre + " " + selector;
+    }).join(",");
+  }).join(","), this.properties, this.mediaQuery);
+};
 
 Declaration.prototype.toString = function() {
   var declaration = this.selector + " {" + this.properties.map(function(property) { return property.toString(); }).join("; ") + "}";
@@ -327,7 +421,7 @@ Declaration.prototype.toString = function() {
   else {
     return declaration;
   }
-}
+};
 
 function Property(property, value) {
   if (!(this instanceof Property)) {
@@ -344,4 +438,4 @@ Property.prototype.toString = function() {
     value = value.join(" ");
   }
   return this.property + ": " + value;
-}
+};
