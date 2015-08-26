@@ -31,7 +31,7 @@ var baseCSS = Stylesheet([
   Declaration(".tagplay-lightbox", [
     Property("position", "relative"),
     Property("max-width", "500px"),
-    Property("margin", "1% auto 0"),
+    Property("margin", "2% auto 0"),
     Property("background", "#FFF")
   ]),
   Declaration(".tagplay-lightbox .tagplay-media-container", [
@@ -106,6 +106,8 @@ var baseCSS = Stylesheet([
   ]),
   Declaration(".tagplay-media-text, .tagplay-media-username, .tagplay-media-date", [
     Property("margin", 0),
+  ]),
+  Declaration(".tagplay-media-text", [
     Property("overflow", "hidden"),
     Property("text-overflow", "ellipsis")
   ]),
@@ -175,7 +177,8 @@ var styles = {
     ]),
     Declaration(".tagplay-media-username a", [
       Property("color", "#FFF"),
-      Property("text-decoration", "none")
+      Property("text-decoration", "none"),
+      Property("border", 0)
     ]),
     Declaration("p.tagplay-media-username:after", [
       Property("display", "block"),
