@@ -213,7 +213,8 @@ var styles = {
     ]),
     Declaration(".tagplay-media-text a", [
       Property("color", "#12C4A1"),
-      Property("text-decoration", "none")
+      Property("text-decoration", "none"),
+      Property("border", 0)
     ]),
     Declaration(".tagplay-media-text a:hover, .tagplay-media-text a:active, .tagplay-media-text a:focus", [
       Property("text-decoration", "underline")
