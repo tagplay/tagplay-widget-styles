@@ -18,6 +18,17 @@ var baseCSS = Stylesheet([
     Property("margin", "0 .05em 0 .1em"),
     Property("vertical-align", "-0.1em")
   ]),
+  Declaration(".tagplay-media-embed", [
+    Property("position", "relative"),
+    Property("overflow", "hidden"),
+    Property("height", 0)
+  ]),
+  Declaration(".tagplay-media-embed iframe", [
+    Property("position", "absolute"),
+    Property("height", "100%"),
+    Property("width", "100%"),
+    Property("border", 0)
+  ]),
   Declaration(".tagplay-lightbox-backdrop", [
     Property("position", "fixed"),
     Property("z-index", 2000),
@@ -97,7 +108,29 @@ var baseCSS = Stylesheet([
   Declaration(".tagplay-media-object, .tagplay-media-object img", [
     Property("max-width", "none"),
     Property("width", "100%"),
-    Property("display", "block")
+    Property("display", "block"),
+    Property("position", "relative")
+  ]),
+  Declaration(".tagplay-media-video:before", [
+    Property("content", "''"),
+    Property("position", "absolute"),
+    Property("top", "0"),
+    Property("left", "0"),
+    Property("right", "0"),
+    Property("bottom", "0"),
+    Property("height", "0"),
+    Property("width", "0"),
+    Property("margin", "auto"),
+    Property("z-index", "100"),
+    Property("opacity", "0.7"),
+    Property("border-style", "solid"),
+    Property("border-left-width", "45px"),
+    Property("border-top-width", "25px"),
+    Property("border-bottom-width", "25px"),
+    Property("border-right-width", "0"),
+    Property("border-left-color", "#FFF"),
+    Property("border-top-color", "transparent"),
+    Property("border-bottom-color", "transparent")
   ]),
   Declaration(".tagplay-link-info-image", [
     Property("max-width", "100%"),
