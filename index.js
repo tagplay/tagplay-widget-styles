@@ -105,11 +105,13 @@ var baseCSS = Stylesheet([
     Property("display", "inline-block"),
     Property("vertical-align", "top"),
   ]),
+  Declaration(".tagplay-media", [
+    Property("position", "relative")
+  ]),
   Declaration(".tagplay-media-object, .tagplay-media-object img", [
     Property("max-width", "none"),
     Property("width", "100%"),
     Property("display", "block"),
-    Property("position", "relative")
   ]),
   Declaration(".tagplay-media-video:before", [
     Property("content", "''"),
