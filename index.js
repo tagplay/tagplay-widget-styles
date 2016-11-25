@@ -383,7 +383,7 @@ function generateCSS(selectorPrefix, config, responsive) {
   css.add(Declaration(selectorPrefix, widgetProperties));
 
   if (responsive || config.type === 'waterfall') {
-    css.add(Declaration(".tagplay-media-container", [
+    css.add(Declaration(".tagplay-media-container, .tagplay-waterfall-column", [
       Property("width", "100%")
     ]).prefix(selectorPrefix));
   }
