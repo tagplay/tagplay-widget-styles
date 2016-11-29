@@ -18,12 +18,12 @@ var baseCSS = Stylesheet([
     Property("margin", "0 .05em 0 .1em"),
     Property("vertical-align", "-0.1em")
   ]),
-  Declaration(".tagplay-media-embed", [
+  Declaration(".tagplay-embed-iframe", [
     Property("position", "relative"),
     Property("overflow", "hidden"),
     Property("height", 0)
   ]),
-  Declaration(".tagplay-media-embed iframe", [
+  Declaration(".tagplay-embed-iframe iframe", [
     Property("position", "absolute"),
     Property("height", "100%"),
     Property("width", "100%"),
@@ -103,7 +103,7 @@ var baseCSS = Stylesheet([
   ]),
   Declaration(".tagplay-media-container", [
     Property("display", "inline-block"),
-    Property("vertical-align", "top"),
+    Property("vertical-align", "top")
   ]),
   Declaration(".tagplay-media", [
     Property("position", "relative")
@@ -111,7 +111,7 @@ var baseCSS = Stylesheet([
   Declaration(".tagplay-media-object, .tagplay-media-object img", [
     Property("max-width", "none"),
     Property("width", "100%"),
-    Property("display", "block"),
+    Property("display", "block")
   ]),
   Declaration(".tagplay-media-video:before", [
     Property("content", "''"),
@@ -297,7 +297,7 @@ var styles = {
     Declaration(".tagplay-media-username + .tagplay-media-date", [
       Property("margin-top", "35px")
     ]),
-    Declaration(".tagplay-media-object", [
+    Declaration(".tagplay-media-object, .tagplay-media-embed", [
       Property("border-radius", "3px")
     ]),
     Declaration(".tagplay-media-username:before", [
