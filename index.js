@@ -134,6 +134,39 @@ var baseCSS = Stylesheet([
     Property("border-top-color", "transparent"),
     Property("border-bottom-color", "transparent")
   ]),
+  Declaration(".tagplay-media-multi-cell", [
+    Property("display", "inline-block"),
+    Property("vertical-align", "top"),
+    Property("position", "relative"),
+    Property("overflow", "hidden")
+  ]),
+  Declaration(".tagplay-media-multi-object", [
+    Property("background-size", "cover"),
+    Property("background-position", "center center"),
+    Property("height", 0)
+  ]),
+  Declaration(".tagplay-media-multi-more", [
+    Property("position", "absolute"),
+    Property("display", "block"),
+    Property("top", 0),
+    Property("left", 0),
+    Property("right", 0),
+    Property("bottom", 0),
+    Property("background", "rgba(0, 0, 0, 0.3)"),
+    Property("color", "#FFF"),
+    Property("text-align", "center")
+  ]),
+  Declaration(".tagplay-media-multi-more-text", [
+    Property("position", "absolute"),
+    Property("height", "50px"),
+    Property("line-height", "50px"),
+    Property("font-size", "50px"),
+    Property("top", 0),
+    Property("left", 0),
+    Property("right", 0),
+    Property("bottom", 0),
+    Property("margin", "auto")
+  ]),
   Declaration(".tagplay-link-info-image", [
     Property("max-width", "100%"),
     Property("display", "block"),
@@ -225,6 +258,11 @@ var styles = {
       Property("border-bottom", "10px solid transparent"),
       Property("border-left", "10px solid #0B131B")
     ]),
+    Declaration(".tagplay-media-index", [
+      Property("text-align", "center"),
+      Property("font-style", "italic"),
+      Property("font-size", "smaller")
+    ]),
     Declaration("p.tagplay-media-text", [
       Property("font-size", "22px"),
       Property("line-height", "31px"),
@@ -299,6 +337,10 @@ var styles = {
     ]),
     Declaration(".tagplay-media-object, .tagplay-media-embed", [
       Property("border-radius", "3px")
+    ]),
+    Declaration(".tagplay-media-multi", [
+      Property("border-radius", "3px"),
+      Property("overflow", "hidden")
     ]),
     Declaration(".tagplay-media-username:before", [
       Property("content", "''"),
