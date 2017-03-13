@@ -50,7 +50,8 @@ var baseCSS = Stylesheet([
     Property('left', 0),
     Property('right', 0),
     Property('bottom', 0),
-    Property('margin', 'auto')
+    Property('margin', 'auto'),
+    Property('z-index', -1)
   ]),
   Directive('-webkit-keyframes tagplay-rotation', [
     Declaration('from', [
@@ -239,7 +240,8 @@ var baseCSS = Stylesheet([
   Declaration('.tagplay-link-info-embed, .tagplay-media-embed', [
     Property('position', 'relative'),
     Property('overflow', 'hidden'),
-    Property('min-height', '75px')
+    Property('min-height', '75px'),
+    Property('z-index', 0)
   ]),
   Declaration('.tagplay-lightbox .tagplay-link-info-embed, .tagplay-lightbox .tagplay-media-embed', [
     Property('min-height', '158px')
