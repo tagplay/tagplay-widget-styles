@@ -29,6 +29,61 @@ var baseCSS = Stylesheet([
     Property("width", "100%"),
     Property("border", 0)
   ]),
+  Declaration(".tagplay-spinner", [
+    Property("height", "60px"),
+    Property("width", "60px"),
+    Property("margin", "40px auto"),
+    Property("position", "relative"),
+    Property("-webkit-animation", "tagplay-rotation .6s infinite linear"),
+    Property("-moz-animation", "tagplay-rotation .6s infinite linear"),
+    Property("-o-animation", "tagplay-rotation .6s infinite linear"),
+    Property("animation", "tagplay-rotation .6s infinite linear"),
+    Property("border-left", "6px solid rgba(18,196,161,.15)"),
+    Property("border-right", "6px solid rgba(18,196,161,.15)"),
+    Property("border-bottom", "6px solid rgba(18,196,161,.15)"),
+    Property("border-top", "6px solid rgba(18,196,161,.8)"),
+    Property("border-radius", "100%")
+  ]),
+  Declaration(".tagplay-spinner-absolute", [
+    Property("position", "absolute"),
+    Property("top", 0),
+    Property("left", 0),
+    Property("right", 0),
+    Property("bottom", 0),
+    Property("margin", "auto")
+  ]),
+  Directive("-webkit-keyframes tagplay-rotation", [
+    Declaration("from", [
+      Property("-webkit-transform", "rotate(0deg)")
+    ]),
+    Declaration("to", [
+      Property("-webkit-transform", "rotate(359deg)")
+    ])
+  ]),
+  Directive("-moz-keyframes tagplay-rotation", [
+    Declaration("from", [
+      Property("-moz-transform", "rotate(0deg)")
+    ]),
+    Declaration("to", [
+      Property("-moz-transform", "rotate(359deg)")
+    ])
+  ]),
+  Directive("-o-keyframes tagplay-rotation", [
+    Declaration("from", [
+      Property("-o-transform", "rotate(0deg)")
+    ]),
+    Declaration("to", [
+      Property("-o-transform", "rotate(359deg)")
+    ])
+  ]),
+  Directive("keyframes tagplay-rotation", [
+    Declaration("from", [
+      Property("transform", "rotate(0deg)")
+    ]),
+    Declaration("to", [
+      Property("transform", "rotate(359deg)")
+    ])
+  ]),
   Declaration(".tagplay-lightbox-backdrop", [
     Property("position", "fixed"),
     Property("z-index", 2000),
@@ -166,6 +221,14 @@ var baseCSS = Stylesheet([
     Property("right", 0),
     Property("bottom", 0),
     Property("margin", "auto")
+  ]),
+  Declaration(".tagplay-link-info-embed, .tagplay-media-embed", [
+    Property("position", "relative"),
+    Property("overflow", "hidden"),
+    Property("min-height", "75px")
+  ]),
+  Declaration(".tagplay-lightbox .tagplay-link-info-embed, .tagplay-lightbox .tagplay-media-embed", [
+    Property("min-height", "158px")
   ]),
   Declaration(".tagplay-link-info-image", [
     Property("max-width", "100%"),
@@ -471,6 +534,26 @@ Stylesheet.prototype.prefix = function(prefix) {
   return new Stylesheet(this.declarations.map(function(declaration) {
     return declaration.prefix(prefix);
   }));
+};
+
+function Directive (directive, declarations) {
+  if (!(this instanceof Directive)) {
+    // Always call as constructor
+    return new Directive(directive, declarations);
+  }
+  this.directive = directive;
+  this.declarations = declarations;
+
+  return this;
+}
+
+Directive.prototype.prefix = function (prefix) {
+  // We never actually want to prefix directives, so this is a no-op
+  return this;
+};
+
+Directive.prototype.toString = function () {
+  return '@' + this.directive + ' {' + this.declarations.map(function (declaration) { return declaration.toString(); }).join('\n') + '}';
 };
 
 function Declaration(selector, properties, mediaQuery) {
