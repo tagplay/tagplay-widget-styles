@@ -94,20 +94,33 @@ var baseCSS = Stylesheet([
     Property('background', 'rgba(0, 0, 0, 0.7)'),
     Property('overflow', 'auto')
   ]),
+  Declaration('.tagplay-lightbox-close', [
+    Property('position', 'absolute'),
+    Property('top', 0),
+    Property('right', 0),
+    Property('width', '40px'),
+    Property('height', '40px'),
+    Property('line-height', '40px'),
+    Property('text-align', 'center'),
+    Property('font-size', '40px'),
+    Property('color', '#FFF'),
+    Property('font-weight', 'bold')
+  ]),
   Declaration('.tagplay-lightbox', [
     Property('position', 'relative'),
     Property('max-width', '500px'),
-    Property('margin', '2% auto 0'),
+    Property('margin', '30px auto 0'),
     Property('background', '#FFF')
   ]),
   Declaration('.tagplay-lightbox .tagplay-media-container', [
     Property('display', 'block')
   ]),
-  Declaration('.tagplay-lightbox .tagplay-lightbox-prev, .tagplay-lightbox .tagplay-lightbox-next', [
+  Declaration('.tagplay-lightbox-prev, .tagplay-lightbox-next', [
     Property('font-size', '100px'),
     Property('line-height', '100px'),
     Property('width', '200px'),
     Property('height', '100%'),
+    Property('min-height', '250px'),
     Property('text-align', 'center'),
     Property('position', 'absolute'),
     Property('top', 0),
