@@ -125,13 +125,13 @@ var baseCSS = Stylesheet([
     Property('right', '100%')
   ]),
   Declaration('.tagplay-lightbox-prev:after', [
-    Property('content', ''‹'')
+    Property('content', "'‹'")
   ]),
   Declaration('.tagplay-lightbox-next', [
     Property('left', '100%')
   ]),
   Declaration('.tagplay-lightbox-next:after', [
-    Property('content', ''›'')
+    Property('content', "'›'")
   ]),
   Declaration('.tagplay-lightbox-prev, .tagplay-lightbox-next', [
     Property('width', '100px')
@@ -169,7 +169,7 @@ var baseCSS = Stylesheet([
     Property('display', 'block')
   ]),
   Declaration('.tagplay-media-video:before', [
-    Property('content', ''''),
+    Property('content', "''"),
     Property('position', 'absolute'),
     Property('top', '0'),
     Property('left', '0'),
@@ -236,7 +236,7 @@ var baseCSS = Stylesheet([
     Property('margin', 'auto')
   ]),
   Declaration('.tagplay-media-text, .tagplay-media-username, .tagplay-media-date', [
-    Property('margin', 0),
+    Property('margin', 0)
   ]),
   Declaration('.tagplay-media-text', [
     Property('overflow', 'hidden'),
@@ -304,7 +304,7 @@ var styles = {
       Property('left', 'auto'),
       Property('width', 'auto'),
       Property('border', '1px solid transparent'),
-      Property('border-radius', '2px 2px 0 2px'),
+      Property('border-radius', '2px 2px 0 2px')
     ]),
     Declaration('.tagplay-media-username a', [
       Property('color', '#FFF'),
@@ -317,7 +317,7 @@ var styles = {
       Property('position', 'absolute'),
       Property('bottom', '-11px'),
       Property('right', '-1px'),
-      Property('content', ''''),
+      Property('content', "''"),
       Property('border-bottom', '10px solid transparent'),
       Property('border-left', '10px solid #0B131B')
     ]),
@@ -406,7 +406,7 @@ var styles = {
       Property('overflow', 'hidden')
     ]),
     Declaration('.tagplay-media-username:before', [
-      Property('content', ''''),
+      Property('content', "''"),
       Property('display', 'inline-block'),
       Property('height', '1.4em'),
       Property('width', '1.4em'),
@@ -451,11 +451,11 @@ var lightboxOnlyStyles = {
   'style-1': Stylesheet([
     Declaration('.tagplay-media + .tagplay-media-text', [
       Property('max-height', 'none')
-    ]),
+    ])
   ])
 };
 
-function generateCSS(selectorPrefix, config, responsive) {
+function generateCSS (selectorPrefix, config, responsive) {
   var style = config.style || 'minimal';
   var spacing = config.spacing !== undefined ? config.spacing : 10;
   var lesserSpacing = Math.floor(spacing / 2);
@@ -495,8 +495,8 @@ function generateCSS(selectorPrefix, config, responsive) {
   css.add(Declaration(config.type === 'waterfall' ? '.tagplay-waterfall-column' : '.tagplay-media-container', [
     Property('width', 100 / config.cols + '%')
   ], responsive ? 'min-width:768px' : undefined).prefix(selectorPrefix.split(',').filter(function (prefix) {
-      return prefix.indexOf('.tagplay-lightbox') === -1;
-    }).join(',')));
+    return prefix.indexOf('.tagplay-lightbox') === -1;
+  }).join(',')));
 
   css.add(Declaration('.tagplay-media-inner', [
     Property('margin', [lesserSpacing + 'px', greaterSpacing + 'px', greaterSpacing + 'px', lesserSpacing + 'px'])
@@ -525,12 +525,12 @@ Stylesheet.prototype.concat = function (other) {
 
 Stylesheet.prototype.toString = function () {
   return this.declarations.map(function (declaration) {
-      return declaration.toString();
+    return declaration.toString();
   }).join('\n');
 };
 
 Stylesheet.prototype.prefix = function (prefix) {
-  return new Stylesheet(this.declarations.map(function(declaration) {
+  return new Stylesheet(this.declarations.map(function (declaration) {
     return declaration.prefix(prefix);
   }));
 };
@@ -565,7 +565,7 @@ function Declaration (selector, properties, mediaQuery) {
   this.mediaQuery = mediaQuery;
 
   return this;
-};
+}
 
 Declaration.prototype.prefix = function (prefix) {
   return new Declaration(this.selector.split(',').map(function (selector) {
@@ -575,13 +575,12 @@ Declaration.prototype.prefix = function (prefix) {
   }).join(','), this.properties, this.mediaQuery);
 };
 
-Declaration.prototype.toString = function() {
+Declaration.prototype.toString = function () {
   var declaration = this.selector + ' {' + this.properties.map(function (property) { return property.toString(); }).join('; ') + '}';
 
   if (this.mediaQuery) {
     return '@media(' + this.mediaQuery + ') {' + declaration + '}';
-  }
-  else {
+  } else {
     return declaration;
   }
 };
