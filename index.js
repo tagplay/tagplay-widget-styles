@@ -104,7 +104,8 @@ var baseCSS = Stylesheet([
     Property('text-align', 'center'),
     Property('font-size', '40px'),
     Property('color', '#FFF'),
-    Property('font-weight', 'bold')
+    Property('font-weight', 'bold'),
+    Property('text-decoration', 'none')
   ]),
   Declaration('.tagplay-lightbox', [
     Property('position', 'relative'),
