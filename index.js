@@ -95,7 +95,7 @@ var baseCSS = Stylesheet([
     Property('background', 'rgba(0, 0, 0, 0.7)'),
     Property('overflow', 'auto')
   ]),
-  Declaration('a.tagplay-lightbox-close', [
+  Declaration('.tagplay-lightbox-backdrop .tagplay-lightbox-close', [
     Property('position', 'absolute'),
     Property('top', 0),
     Property('right', 0),
@@ -117,7 +117,7 @@ var baseCSS = Stylesheet([
   Declaration('.tagplay-lightbox .tagplay-media-container', [
     Property('display', 'block')
   ]),
-  Declaration('a.tagplay-lightbox-prev, a.tagplay-lightbox-next', [
+  Declaration('.tagplay-lightbox .tagplay-lightbox-prev, .tagplay-lightbox .tagplay-lightbox-next', [
     Property('font-size', '100px'),
     Property('line-height', '100px'),
     Property('width', '200px'),
@@ -129,41 +129,41 @@ var baseCSS = Stylesheet([
     Property('text-decoration', 'none'),
     Property('color', '#FFF')
   ]),
-  Declaration('.tagplay-lightbox-prev:after, .tagplay-lightbox-next:after', [
+  Declaration('.tagplay-lightbox .tagplay-lightbox-prev:after, .tagplay-lightbox .tagplay-lightbox-next:after', [
     Property('position', 'absolute'),
     Property('top', '50%'),
     Property('left', 0),
     Property('margin-top', '-75px'),
     Property('width', '100%')
   ]),
-  Declaration('.tagplay-lightbox-prev', [
+  Declaration('.tagplay-lightbox .tagplay-lightbox-prev', [
     Property('right', '100%')
   ]),
-  Declaration('.tagplay-lightbox-prev:after', [
+  Declaration('.tagplay-lightbox .tagplay-lightbox-prev:after', [
     Property('content', "'‹'")
   ]),
-  Declaration('.tagplay-lightbox-next', [
+  Declaration('.tagplay-lightbox .tagplay-lightbox-next', [
     Property('left', '100%')
   ]),
-  Declaration('.tagplay-lightbox-next:after', [
+  Declaration('.tagplay-lightbox .tagplay-lightbox-next:after', [
     Property('content', "'›'")
   ]),
-  Declaration('.tagplay-lightbox-prev, .tagplay-lightbox-next', [
+  Declaration('.tagplay-lightbox .tagplay-lightbox-prev, .tagplay-lightbox .tagplay-lightbox-next', [
     Property('width', '100px')
   ], 'max-width:767px'),
-  Declaration('.tagplay-lightbox-prev, .tagplay-lightbox-next', [
+  Declaration('.tagplay-lightbox .tagplay-lightbox-prev, .tagplay-lightbox .tagplay-lightbox-next', [
     Property('width', '30px')
   ], 'max-width:650px'),
-  Declaration('.tagplay-lightbox-prev, .tagplay-lightbox-next', [
+  Declaration('.tagplay-lightbox .tagplay-lightbox-prev, .tagplay-lightbox .tagplay-lightbox-next', [
     Property('text-shadow', '2px 0 5px rgba(0, 0, 0, 0.5)'),
     Property('width', '100px')
   ], 'max-width:550px'),
-  Declaration('.tagplay-lightbox-prev', [
+  Declaration('.tagplay-lightbox .tagplay-lightbox-prev', [
     Property('left', '5px'),
     Property('right', 'auto'),
     Property('text-align', 'left')
   ], 'max-width:550px'),
-  Declaration('.tagplay-lightbox-next', [
+  Declaration('.tagplay-lightbox .tagplay-lightbox-next', [
     Property('right', '5px'),
     Property('left', 'auto'),
     Property('text-align', 'right')
