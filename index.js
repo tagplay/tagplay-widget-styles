@@ -386,12 +386,16 @@ var styles = {
     Declaration('.tagplay-link-info-title', [
       Property('font-size', '16px'),
       Property('line-height', '23px'),
-      Property('margin', '0')
+      Property('margin', '0'),
+      Property('overflow', 'hidden'),
+      Property('text-overflow', 'ellipsis')
     ]),
     Declaration('.tagplay-link-info-description', [
       Property('font-size', '14px'),
       Property('line-height', '20px'),
-      Property('margin', '0')
+      Property('margin', '0'),
+      Property('overflow', 'hidden'),
+      Property('text-overflow', 'ellipsis')
     ]),
     Declaration('.tagplay-link-info-link', [
       Property('color', 'inherit'),
