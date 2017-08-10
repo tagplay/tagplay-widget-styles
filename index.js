@@ -243,6 +243,9 @@ var baseCSS = Stylesheet([
     Property('min-height', '75px'),
     Property('z-index', 0)
   ]),
+  Declaration('.tagplay-media-embed blockquote', [
+    Property('display', 'none')
+  ]),
   Declaration('.tagplay-lightbox .tagplay-link-info-embed, .tagplay-lightbox .tagplay-media-embed', [
     Property('min-height', '158px')
   ]),
