@@ -1,6 +1,6 @@
 {
   "name": "@tagplay/tagplay-widget-styles",
-  "version": "2.9.3",
+  "version": "2.9.4",
   "description": "Styles for Tagplay widgets.",
   "main": "index.js",
   "scripts": {
