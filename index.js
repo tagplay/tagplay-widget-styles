@@ -428,6 +428,10 @@ var styles = {
       Property('border-radius', '3px'),
       Property('overflow', 'hidden')
     ]),
+    Declaration('.tagplay-media-embed-tweet', [
+      Property('margin', '10px 0 -10px'),
+      Property('padding', '0 1px')
+    ]),
     Declaration('.tagplay-media-username:before', [
       Property('content', "''"),
       Property('display', 'inline-block'),
